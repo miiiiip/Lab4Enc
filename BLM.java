@@ -74,7 +74,7 @@ public class BLM {
         for (int i = 0; i < deKeyd.length; i++) {
             strRep = strRep+deKeyd[i];
             // System.out.println(strRep);
-            if(i%7==0 && i != 0){
+            if(strRep.length() == 7){
                 int decimal = Integer.parseInt(strRep, 2);
                 System.out.println(decimal);
                 System.out.println((char) decimal);
