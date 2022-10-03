@@ -1,16 +1,30 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class BLM {
 
     public static void main(String[] args) {
         BLM runner = new BLM();
-        char[] text = { 'H', 'e', 'l', 'l', 'o' };
+
+        // The scanner takes an input (for now prefereably with no spaces) and converts it into a char array
+        // So out methods can use it.
+        System.out.println("Enter the plaintext here: ");
+        Scanner scan = new Scanner(System.in);
+        String input = scan.next();
+        scan.close();
+        char[] text = input.toCharArray();
+        System.out.println("This is what the input looks like as a char Array: " + Arrays.toString(text));
+        
+
         int[] key = { 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0,
                 0, 1 };
 
+        System.out.println("Encrypted Text: ");
         System.out.println(Arrays.toString(runner.encrypt(text, key)));
+        System.out.println("Decrypted Text: ");
         System.out.println(runner.decrypt(runner.encrypt(text, key), key));
     }
+
 
     public int[] shiftRightByThree(int[] input) {
         for (int J = 0; J < 3; J++) {
@@ -44,15 +58,17 @@ public class BLM {
         return resultant;
     }
 
-    public String charToBinary(char input) {
-        return Integer.toBinaryString((int) input);
+    public String charToBinary(char[] input) {
+        String res = "";
+        for (int i = 0; i < input.length; i++) {
+            res = res + Integer.toBinaryString((int) input[i]);
+        }
+        return res;
     }
 
     public int[] encrypt(char[] input, int[] key) {
-        String res = "";
-        for (int i = 0; i < input.length; i++) {
-            res = res + charToBinary(input[i]);
-        }
+        String res = charToBinary(input);
+
         char[] charArr = res.toCharArray();
         int[] plain = new int[charArr.length];
         for (int i = 0; i < charArr.length; i++) {
