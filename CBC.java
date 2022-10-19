@@ -1,6 +1,6 @@
 public class CBC {
 
-    public static String encrpytCBC(String input, String key, String IV) {
+    public static String encrypt(String input, String key, String IV) {
         int lengthRemainder = input.length() % 5;
         int runs = input.length() / 5;
         String result = "";
@@ -33,7 +33,7 @@ public class CBC {
         return result;
     }
 
-    public static String decryptCBC(String input, String key, String IV) {
+    public static String decrypt(String input, String key, String IV) {
         String res = "";
         int runs = input.length() / 35;
         char[] fullInput = input.toCharArray();

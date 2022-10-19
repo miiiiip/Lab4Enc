@@ -1,6 +1,6 @@
 public class CTR {
 
-    public static String encryptCTR(String input, String key, String IV) {
+    public static String encrypt(String input, String key, String IV) {
         int lengthRemainder = input.length() % 5;
         int runs = input.length() / 5;
         if (lengthRemainder > 0) {
@@ -15,7 +15,7 @@ public class CTR {
         return String.valueOf(result);
     }
 
-    public static String decryptCTR(String input, String key, String IV) {
+    public static String decrypt(String input, String key, String IV) {
         int lengthRemainder = input.length() % 35;
         int runs = input.length() / 35;
         if (lengthRemainder > 0) {

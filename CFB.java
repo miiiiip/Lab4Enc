@@ -1,6 +1,6 @@
 public class CFB {
     
-    public static String encrpytCFB(String input, String key, String IV) {
+    public static String encrypt(String input, String key, String IV) {
         int lengthRemainder = input.length() % 5;
         int runs = input.length() / 5;
         String result = "";
@@ -36,7 +36,7 @@ public class CFB {
         return result;
     }
 
-    public static String decryptCFB(String input, String key, String IV) {
+    public static String decrypt(String input, String key, String IV) {
         String res = "";
         int runs = input.length() / 35;
         char[] fullInput = input.toCharArray();

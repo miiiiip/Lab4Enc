@@ -1,5 +1,5 @@
 public class ECB {
-    public static String encryptECB(String input, String key) {
+    public static String encrypt(String input, String key) {
         int lengthRemainder = input.length() % 5;
         int runs = input.length() / 5;
         String result = "";
@@ -31,7 +31,7 @@ public class ECB {
         return result;
     }
 
-    public static String decryptECB(String input, String key) {
+    public static String decrypt(String input, String key) {
         int runs = input.length() / 35;
         String result = "";
         char[] fullInput = input.toCharArray();

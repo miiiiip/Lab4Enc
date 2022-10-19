@@ -1,6 +1,6 @@
 public class OFB {
 
-    public static String encyrptOFB(String input, String key, String IV) {
+    public static String encrypt(String input, String key, String IV) {
         int lengthRemainder = input.length() % 5;
         int runs = input.length() / 5;
         if (lengthRemainder > 0) {
@@ -15,7 +15,7 @@ public class OFB {
         return String.valueOf(result);
     }
 
-    public static String decryptOFB(String input, String key, String IV) {
+    public static String decrypt(String input, String key, String IV) {
         int lengthRemainder = input.length() % 35;
         int runs = input.length() / 35;
         if (lengthRemainder > 0) {
