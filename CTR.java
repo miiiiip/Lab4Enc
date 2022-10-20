@@ -3,6 +3,8 @@ public class CTR {
     public static String encrypt(String input, String key, String IV) {
         int lengthRemainder = input.length() % 5;
         int runs = input.length() / 5;
+
+        //If there is a remainder, add 1 to the number of runs
         if (lengthRemainder > 0) {
             runs++;
         }
@@ -18,6 +20,8 @@ public class CTR {
     public static String decrypt(String input, String key, String IV) {
         int lengthRemainder = input.length() % 35;
         int runs = input.length() / 35;
+
+        //If there is a remainder, add 1 to the number of runs
         if (lengthRemainder > 0) {
             runs++;
         }
