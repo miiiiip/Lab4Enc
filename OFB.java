@@ -17,7 +17,6 @@ public class OFB {
             String encIV = String.valueOf(Support.encryptBinary(IV.toCharArray(), key.toCharArray()));
             stream = stream + encIV;
             IV = encIV;
-            
         }
 
         //XOR the plaintext with their corresponding stream blocks using the encryption stream just created previously

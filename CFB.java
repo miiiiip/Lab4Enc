@@ -17,7 +17,7 @@ public class CFB {
         //Encrypt the IV and then XOR it with the first block to receive the first encrypted block, which is appended to
         //the result and then encrypted itself to be XOR'd with the next block and so on.
         for (int i = 0; i < runs; i++) {
-            char[] encryptIV = Support.encrypt(IV.toCharArray(), key.toCharArray());
+            char[] encryptIV = Support.encryptBinary(IV.toCharArray(), key.toCharArray());
             char[] res = Support.addToKey(Support.charToBinary(splitInput[i]), encryptIV);
             String tempString = String.valueOf(res);
             result = result + tempString;
@@ -59,7 +59,7 @@ public class CFB {
         //result with the first decrypted block and XOR it with the next to get the next block and so on, converting to
         //its string representation with each block along the way
         for (int i = 0; i < runs; i++) {
-            char[] encryptedIV = Support.encrypt(IV.toCharArray(), key.toCharArray());
+            char[] encryptedIV = Support.encryptBinary(IV.toCharArray(), key.toCharArray());
             char[] added = Support.addToKey(splitInput[i], encryptedIV);
             String strRep = "";
             for (int j = 0; j < added.length; j++) {
