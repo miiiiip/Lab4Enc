@@ -38,6 +38,14 @@ public class Support {
         return resultant;
     }
 
+    /**
+     * This function takes a number and converts it to the binary representation.
+     * We assume it will take a number between 0 and 65536 so the length of the binary representation
+     * is at most 16 bits long. For every representation less than 16 bits long, we add zero's to the left
+     * to add "padding," so the length remains consistent. This is only used in CTR.
+     * @param input Input is some number between 0 and 65536
+     * @return returns the binary representation of the input with "padding" in the front
+     */
     public static String binaryIV(int input) {
         String binRep = Integer.toBinaryString(input);
         while (binRep.length() < 16) {
@@ -46,12 +54,13 @@ public class Support {
         return binRep;
     }
 
-    // This takes an array of characters and converts each character into its binary
-    // representation
-    // The binary representation of each char is put into a string until all the
-    // chars are converted
-    // then the string gets converted into a char array of all the 1's and 0's
-    // obtained.
+    /**
+     * The binary representation of each char is put into a string until all the chars are converted.
+     * Then the string gets converted into a char array of all the 1's and 0's obtained.
+     * @param input Assumed to be an array of characters.
+     * @return Returns the binary representation of each character in the form of a char array.
+     * (Typically every chunk of 7 positions in the array will be 1 converted character)
+     */
     public static char[] charToBinary(char[] input) {
         String temp = "";
         for (int i = 0; i < input.length; i++) {
@@ -66,6 +75,14 @@ public class Support {
         return res;
     }
 
+    /**
+     * This is the function we use to encrypt any block of five characters.
+     * It starts by converting the characters to binary, then shifting the binary representation
+     * by three positions to the right, then it uses binary addition to add the key to the shifted plaintext.
+     * @param input The input is assumed to be a char array of any ASCII character.
+     * @param key The key is assumed to be a char array of length 35, where the contents are 1's and 0's
+     * @return This returns the encrypted plaintext in the form of 1's and 0's where every 1 or 0 is a position in the array.
+     */
     public static char[] encrypt(char[] input, char[] key) {
         char[] charArr = charToBinary(input); // Convert to binary (Result is a char array of 1's and 0's)
         char[] plain = shiftRightByThree(charArr); // Shift binary representation to the right (circular)
@@ -75,6 +92,14 @@ public class Support {
         return (enc);
     }
 
+     /**
+     * This is the function we use to encrypt any block of 35 1's and 0's. We use it to encrypt IV's.
+     * It starts by converting the characters to binary, then shifting the binary representation
+     * by three positions to the right, then it uses binary addition to add the key to the shifted plaintext.
+     * @param input The input is assumed to be a char array of 1's and 0's.
+     * @param key The key is assumed to be a char array of length 35, where the contents are 1's and 0's
+     * @return This returns the encrypted plaintext in the form of 1's and 0's where every 1 or 0 is a position in the array.
+     */
     public static char[] encryptBinary(char[] input, char[] key) {
         char[] plain = shiftRightByThree(input); // Shift binary representation to the right (circular)
         char[] enc = new char[plain.length];
