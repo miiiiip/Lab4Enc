@@ -14,7 +14,10 @@ public class OFB {
         //Create the encryption stream by encrypting the IV with the key, character by character, using the result of
         //the first character for the following and so on, appending the result to the stream with each step
         for (int index = 0; index < runs; index++) {
-            stream = stream + String.valueOf(Support.encrypt(IV.toCharArray(), key.toCharArray()));
+            String encIV = String.valueOf(Support.encryptBinary(IV.toCharArray(), key.toCharArray()));
+            stream = stream + encIV;
+            IV = encIV;
+            
         }
 
         //XOR the plaintext with their corresponding stream blocks using the encryption stream just created previously
@@ -37,7 +40,9 @@ public class OFB {
         //the first character for the following and so on, appending the result to the stream with each step. No need
         //to invert the cipher.
         for (int index = 0; index < runs; index++) {
-            stream = stream + String.valueOf(Support.encrypt(IV.toCharArray(), key.toCharArray()));
+            String encIV = String.valueOf(Support.encryptBinary(IV.toCharArray(), key.toCharArray()));
+            stream = stream + encIV;
+            IV = encIV;
         }
 
         //XOR the ciphertext with their corresponding stream blocks using the de-encryption stream just created previously

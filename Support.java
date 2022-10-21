@@ -75,6 +75,14 @@ public class Support {
         return (enc);
     }
 
+    public static char[] encryptBinary(char[] input, char[] key) {
+        char[] plain = shiftRightByThree(input); // Shift binary representation to the right (circular)
+        char[] enc = new char[plain.length];
+        enc = addToKey(plain, key); // Add the shifted binary represention of the text with the key (The result is
+                                    // still a char array of 1's and 0's)
+        return (enc);
+    }
+
     public static char[] encryptPlusXOR(char[] input, char[] key, String vector) {
         char[] vectArr = vector.toCharArray();
         char[] charArr = charToBinary(input); // Convert to binary (Result is a char array of 1's and 0's)
