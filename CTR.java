@@ -10,7 +10,8 @@ public class CTR {
         }
         String stream = "";
         for (int index = 0; index < runs; index++) {
-            stream = stream + String.valueOf(IV) + Support.binaryIV(index);
+            char[] tempChar = (String.valueOf(IV) + Support.binaryIV(index)).toCharArray();
+            stream = stream + String.valueOf(Support.encrypt(tempChar, key.toCharArray()));
         }
         char[] result = new char[input.length()];
         result = Support.addToKey(stream.toCharArray(), Support.charToBinary(input.toCharArray()));
@@ -27,7 +28,8 @@ public class CTR {
         }
         String stream = "";
         for (int index = 0; index < runs; index++) {
-            stream = stream + String.valueOf(IV) + Support.binaryIV(index);
+            char[] tempChar = (String.valueOf(IV) + Support.binaryIV(index)).toCharArray();
+            stream = stream + String.valueOf(Support.encrypt(tempChar, key.toCharArray()));
         }
         char[] result = new char[input.length()];
         result = Support.addToKey(stream.toCharArray(), input.toCharArray());
