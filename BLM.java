@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class BLM {
     public static void main(String[] args) {
+        
 
         String IV = "10001011101011001000110011110000101";
         String IV19 = "1110101100100011001";
@@ -10,7 +11,7 @@ public class BLM {
         // So out methods can use it.
         System.out.println("Enter the plaintext here: ");
         Scanner scan = new Scanner(System.in);
-        String input = scan.next();
+        String input = scan.nextLine();
         scan.close();
         // { 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0,
         // 0, 1, 1, 0, 0, 0, 1, 0, 0, 1 };
@@ -74,16 +75,16 @@ public class BLM {
         System.out.println("CBC error: " + CBC.decrypt(CBCErrorText, key, IV));
 
         // CFB encryption:
-        // 0101100010110110110010001110110011100100111010010011110111011110000011
-        String CFBErrorText = "0101100010110110110010001110100011101100111010010011110111011110000011";
+        //                     1100010110011011011010010001001000100100111000010011110111011110010011
+        String CFBErrorText = "1101010110011011011010010001001000100100111000010011110111011110010011";
         System.out.println("CFB error: " + CFB.decrypt(CFBErrorText, key, IV));
 
-        // OFB encryption: 010110001011011011001000111011001110010011
-        String OFBErrorText = "010110001011011011001010111011001110010011";
+        // OFB encryption:     110001011001101101101001000100100011010011
+        String OFBErrorText = "110101011001101101101001000100100011010011";
         System.out.println("OFB error: " + OFB.decrypt(OFBErrorText, key, IV));
 
-        // CTR encryption: 010010101001110010000110000111101000011010
-        String CTRErrorText = "010010101001110000000110000111101000011010";
+        // CTR encryption:     011010011000101010011100100011000010011011
+        String CTRErrorText = "011000011000101010011100100011000010011011";
         System.out.println("CTR error: " + CTR.decrypt(CTRErrorText, key, IV19));
 
     
