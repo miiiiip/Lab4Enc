@@ -35,7 +35,7 @@ public class CFB {
                     remainingChars[i] = fullInput[clean + i];
                 }
             }
-            char[] encryptIV = Support.encrypt(IV.toCharArray(), key.toCharArray());
+            char[] encryptIV = Support.encryptBinary(IV.toCharArray(), key.toCharArray());
             char[] res = Support.addToKey(Support.charToBinary(remainingChars), encryptIV);
             result = result + String.valueOf(res);
         }
